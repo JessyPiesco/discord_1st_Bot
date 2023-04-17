@@ -13,12 +13,18 @@ const client = new Client({
 client.on('ready', (c)=>{
   console.log(`${c.user.tag} is ready`)
 })
-client.on(`messageCreate`, (message)=>{
-  if(message.author.bot){
-    return;
-  }
-  if(message.content.toLowerCase()==="hello"){
-    message.reply("Hey!")
+// client.on(`messageCreate`, (message)=>{
+//   if(message.author.bot){
+//     return;
+//   }
+//   if(message.content.toLowerCase()==="hello"){
+//     message.reply("Hey!")
+//   }
+// })
+client.on('interactionCreate', (interaction)=>{
+  if(!interaction.isChatInputCommand()){return;}
+  if(interaction.commandName.toLowerCase() === 'hey'){
+    interaction.reply('Hey!')
   }
 })
 
